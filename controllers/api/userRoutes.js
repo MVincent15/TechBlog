@@ -23,11 +23,11 @@ router.get('/:id', withAuth, async (req, res) => {
             attributes: { exclude: ['password'] },
             include: [{
                 model: Post,
-                attributes: ['id', 'comment_text', 'post_id', 'created_at'],
+                attributes: ['id', 'comment_text', 'post_id'],
             },
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'created_at'],
+                attributes: ['id', 'comment_text'],
                 include: {
                     model: Post,
                     attributes: ['title']

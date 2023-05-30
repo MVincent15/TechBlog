@@ -1,52 +1,42 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
-const sequelize = require('../config/connection');
+
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      attributes: [
-        'id',
-        'title',
-        'content',
-        'created_at'
-      ],
       include: [
         {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
         },
-        {
-          model: User, 
-          attributes: ['username']
-        }
       ],
     });
-    
-    const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render('homepage', { 
-      posts, 
-      logged_in: req.session.logged_in 
+    const posts = postData.map((blogPost) =>
+      blogPost.get({ plain: true })
+    );
+
+    res.render("homepage", {
+      posts,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      attributes: [ 'id', 'title', 'content', 'created_at'],
       include: [
         {
           model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+          attributes: ['id', 'comment_text', 'post_id', 'user_id'],
           include: {
             model: User, 
             attributes: ['username']

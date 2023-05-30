@@ -9,7 +9,7 @@ router.get('/', withAuth, async (req, res) => {
             attributes: { exclude: ['password'] },
             include: [{
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -39,7 +39,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
             attributes: { exclude: ['password'] },
             include: [{
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id'],
                 include: {
                     model: User,
                     attributes: ['username']
