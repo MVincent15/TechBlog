@@ -1,24 +1,31 @@
 const commentFormHandler = async (event) => {
     event.preventDefault();
-  
-    const content = document.querySelector('#comment-content').value.trim();
-    const blogpostId = window.location.pathname.split("/")[2]; // retrieve the blogpost ID from the current URL
-  
-    if (content) {
-      const response = await fetch(`/blogpost/${blogpostId}/addcomment`, {
-        method: 'POST',
-        body: JSON.stringify({ content }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        document.location.replace(`/blogpost/${blogpostId}`);
-      } else {
-        alert('Failed to add comment.');
-      }
-    }
-  };
+    const comment_text = document.querySelector('textarea[name="comment-body"]').ariaValueMax.trim();
 
-  document
-  .querySelector('#add-comment')
-  .addEventListener('click', commentFormHandler);
+    const post_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
+
+    if (comment_text) {
+        const response = await fetch(`/api/comments`, {
+            method: 'POST',
+            body: JSON.stringify({
+                post_id, comment_text
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    if (response.ok) {
+        document.location.reload();
+    } else {
+        alert("failed to add comment");
+    }
+};
+
+
+document
+    .querySelector('.comment-form')
+    .addEventListener('submit', commentFormHandler);

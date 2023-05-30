@@ -1,19 +1,20 @@
-<div class="d-flex">
-    <div class="bg-secondary bg-gradient p-2 vw-100 d-flex justify-content-between" style="height:fit-content">
-        <h4 class="ms-4 align-self-center">My Dashboard</h4>
-        <a href="/dashboard/addblogpost" type="button" class="create-new-blogpost-btn btn btn-primary me-4 mt-2 mb-2">Create New
-            BlogPost</a>
-    </div>
-</div>
-<div class="p-2">
-    <h4 class="ms-4 mt-3">My Blog Posts</h4>
-    <div class="row">
-        {{#each blogPosts as |blogPost|}}
-        <div class="col-md-4">
-            <div class="d-flex justify-content-center">
-                {{> blogsummary}}
-            </div>
-        </div>
+<section class="new-post-section">
+    <button type="submit" class="btn" id="create-new-post">Create New Post</button>
+</section>
+
+
+{{#if posts.length}}
+<section>
+    <h2>Dashboard</h2>
+    <ul class="post-list">
+        {{#each posts as |post|}}
+        <li>
+            {{> post-info post}}
+            <a href="/dashboard/edit/{{post.id}}" class="edit-link">edit post</a>
+        </li>
         {{/each}}
-    </div>
-</div>
+    </ul>
+</section>
+{{/if}}
+
+<script src="/public/js/add.js"></script>

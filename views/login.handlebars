@@ -1,21 +1,47 @@
-<div class="d-flex justify-content-center vh-100">
-    <div class="card align-self-center" style="width: 45%; height:fit-content; min-width:fit-content;">
-        <div class="card-header mb-0">
-            <h2 class="card-title" style="font-size: 1.5rem">Login</h2>
-        </div>
-        <form class="login-form p-4">
-            <div class="mb-3">
-                <label for="email-login" class="form-label" style="font-size: .75rem">Email:</label>
-                <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp">
+<section class="login-page">
+    <div class="form-heading">
+        <h1>Login</h1>
+    </div>
+    <div class="form-section">
+        <form class="login-form">
+            <div>
+                <label for="username-login">Username</label>
+                <input type="text" class="entry-field" id="username-login" />
             </div>
-            <div class="mb-3">
-                <label for="password-login" class="form-label" style="font-size: .75rem">Password:</label>
-                <input type="password" class="form-control" id="password-login">
+            <div>
+                <label for="password-login">Password</label>
+                <input type="password" class="entry-field" id="password-login" />
             </div>
-            <button type="submit" class="btn btn-primary mb-3" style="font-size: 0.5rem padding: 0.25rem 1rem" id="login-btn">Login</button>
+            <div>
+                <button type="submit" class="login-signup-btn">Login</button>
+            </div>
         </form>
     </div>
-</div>
 
+    <a href="/signup" class="sign-in-link">Sign-Up</a>
+</section>
+
+<section class="sign-in-page">
+    <div class="form-heading">
+        <h1>Sign-Up</h1>
+    </div>
+    <div class="form-section">
+        <form class="signup-form">
+            <div>
+                <label for="username-signup">Username</label>
+                <input type="text" class="entry-field" id="username-signup" />
+            </div>
+            <div>
+                <label for="password-signup">Password</label>
+                <input type="password" class="entry-field" id="password-signup" />
+            </div>
+            <div>
+                <button type="submit" class="login-signup-btn">Sign-Up</button>
+            </div>
+        </form>
+    </div>
+
+    <a href="/login" class="login-link">Login</a>
+</section>
 
 <script src="/public/js/login.js"></script>

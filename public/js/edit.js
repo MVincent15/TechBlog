@@ -1,27 +1,29 @@
-const updateBlogPostFormHandler = async (event) => {
+const editFormHandler = async (event) => {
     event.preventDefault();
-  
-    const title = document.querySelector('#update-blogpost-title').value.trim()
-    const content = document.querySelector('#update-blogpost-content').value.trim();
-    const blogpostId = window.location.pathname.split("/")[3]; // retrieve the blogpost ID from the current URL
 
-    console.log(blogpostId);
+    const title = document.querySelector('input[name="post-title"]').value;
+    const post_content = document.querySelector('textarea[name="post-content"]').value.trim();
+    const post_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
 
-    if (title && content) {
-      const response = await fetch(`/dashboard/updateblogpost/${blogpostId}`, {
+
+    const response = await fetch(`/api/posts/${post_id}`, {
         method: 'PUT',
-        body: JSON.stringify({ title, content }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+        body: JSON.stringify({ title, post_content }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 
-      if (response.ok) {
-        document.location.replace("/dashboard");
-      } else {
-        alert('Failed to add blogpost.');
-      }
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('Failed to edit post');
     }
-  };
+};
 
-  document
-  .querySelector('#update-blogpost')
-  .addEventListener('click', updateBlogPostFormHandler);
+document
+    .querySelector('.edit-post-form')
+    .addEventListener('submit', editFormHandler);
+
