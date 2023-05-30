@@ -1,7 +1,41 @@
-<ul class="post-list">
-    {{#each posts as |post|}}
-    <li>
-        {{> post-info post }}
-    </li>
-    {{/each}}
-</ul>
+<div class="m-0 p-0">
+    <div class="container">
+        <div class="row pt-4">
+            <div class="col-md-5">
+                <h3 class="mb-4">Welcome to the Blog Home</h3>
+                <p>This is a place to for developers to conveniently store posts regarding technical concepts, recent
+                    advancements, and new technologies. Developers can publish their blog posts and comment on other
+                    developers’ posts as well. Check out the topics listed below.</p>
+                {{#if loggedIn}}
+                <p>You can click on any blogpost title to find out more information on the topic. You can also add
+                    comments
+                    after clicking on the blogpost title. Please use your dashboard to create a new post or to
+                    edit/delete
+                    an existing post you have authored.</p>
+                {{else}}
+                <p>To get started, please login or sign up!</p>
+                <div class="row pt-3 d-flex justify-content-center">
+                    <div class="col-md-6 my-3">
+                        <a href="/login" class="btn btn-primary login-form" type="submit" style="width: 75%">Login</a>
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <a href="/signup" class="btn btn-primary signup-form" type="submit" style="width: 75%">Sign
+                            Up</a>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="col-md-7 my-3 text-md-end">
+                <img src="./images/blog-stock-photo.jpg" alt="Description of image" width="95%"
+                    style="border-radius: 10px" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {{#each blogPosts as |blogPost|}}
+        <div class="col-md-6">
+            {{> blogtitle}}
+        </div>
+        {{/each}}
+    </div>
+</div>

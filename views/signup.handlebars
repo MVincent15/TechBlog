@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center vh-100">
+    <div class="card align-self-center" style="width: 45%; height:fit-content; min-width:fit-content;">
+        <div class="card-header mb-0">
+            <h2 class="page-title" style="font-size: 1.5rem">SignUp</h2>
+        </div>
+        <form class="signup-form p-4">
+            <div class="mb-3">
+                <label for="username-signup" class="form-label" style="font-size: .75rem">Username:</label>
+                <input type="text" class="form-control" id="username-signup">
+            </div>
+            <div class="mb-3">
+                <label for="email-signup" class="form-label" style="font-size: .75rem">Email:</label>
+                <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password-signup" class="form-label" style="font-size: .75rem">Password:</label>
+                <input type="password" class="form-control" id="password-signup">
+            </div>
+            <button type="submit" class="btn btn-primary signup-form"
+                style="font-size: 0.5rem padding: 0.25rem 1rem" id="signup-btn">SignUp</button>
+        </form>
+    </div>
+</div>
+
+<script src="/public/js/signup.js"></script>

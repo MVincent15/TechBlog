@@ -1,22 +1,21 @@
-const delButtonHandler = async (event) => {
+const deleteBlogPost = async (event) => {
     event.preventDefault();
+  
+    const blogpostId = window.location.pathname.split("/")[3];
 
-    const post_id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
+    console.log(blogpostId);
 
-    const response = await fetch(`/api/projects/${post_id}`, {
-        method: 'DELETE',
+    const response = await fetch(`/dashboard/deleteblogpost/${blogpostId}`, {
+        method: "DELETE",
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard');
-    } else {
-        alert('Failed to delete project');
-    }
-};
+        document.location.replace("/dashboard");
+      } else {
+        alert('Failed to add blogpost.');
+      }
+    };
 
-
-document
-    .querySelector('.delete-post-btn')
-    .addEventListener('click', delButtonHandler);
+  document
+  .querySelector('#delete-blogpost')
+  .addEventListener('click', deleteBlogPost);

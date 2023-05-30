@@ -1,39 +1,24 @@
-const newFormHandler = async (event) => {
+const blogPostFormHandler = async (event) => {
   event.preventDefault();
 
-  const title = document.querySelector('input[name="post-title"]').value;
-  const post_content = document.querySelector('textarea[name="post-content"]').value.trim();
+  const title = document.querySelector('#add-blogpost-title').value.trim()
+  const content = document.querySelector('#add-blogpost-content').value.trim();
 
+  if (title && content) {
+    const response = await fetch('/dashboard/addblogpost', {
+      method: 'POST',
+      body: JSON.stringify({ title, content }),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  const response = await fetch(`/api/posts`, {
-    method: 'POST',
-    body: JSON.stringify({ title, post_content }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (response.ok) {
-    document.location.replace('/dashboard');
-  } else {
-    alert('Failed to create post');
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert('Failed to add blogpost.');
+    }
   }
 };
 
-const createPostHandler = async (event) => {
-  event.preventDefault();
-
-  document.location.replace('/dashbaord/new')
-};
-
-
 document
-  .querySelector('.new-post-form')
-  .addEventListener('submit', newFormHandler);
-
-document
-  .querySelector('#create-new-post')
-  .addEventListener('submit', createPostHandler);
-
-
-
+.querySelector('#add-blogpost')
+.addEventListener('click', blogPostFormHandler);

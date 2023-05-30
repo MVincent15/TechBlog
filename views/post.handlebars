@@ -1,23 +1,16 @@
-<a href="/dashboard" class="go-back"> &larr; Go-Back</a>
-<br>
-<br>
-
-{{> post-info post}}
-
-{{#if loggedIn}}
-<form class="comment-form">
-    <div>
-        <textarea name="comment-body"></textarea>
+<div class="d-flex flex-column">
+  <div class="card" style="width:fit-content; height:fit-content;">
+    <div class="card-body">
+      <h5 class="card-title">{{blogPost.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Written by: {{blogPost.user.username}} on {{format_date
+        blogPost.date_posted}}</h6>
+      <p class="card-text">{{blogPost.content}}</p>
+      <a href='/blogpost/{{blogPost.id}}/addcomment' class="btn btn-primary">Add a Comment</a>
     </div>
-
-    <div>
-        <button type="submit">Comment</button>
+  </div>
+   <div>
+      {{#each blogPost.comments as |comment|}}
+      {{> blogcomment}}
+      {{/each}}
     </div>
-</form>
-{{/if}}
-
-{{> comments post.comments}}
-
-{{#if loggedIn}}
-<script src="/public/js/comment.js"></script>
-{{/if}}
+</div>

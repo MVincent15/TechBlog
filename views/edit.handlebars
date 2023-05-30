@@ -1,30 +1,27 @@
-<a href="/dashboard" class="go-back"> &larr; Go-Back</a>
+<div class="d-flex justify-content-center align-items-center vh-100">
+<div class="container">
+  <div class="card">
+    <div class="form-group m-3">
+      <label for="update-blogpost-title" class="form-label custom-label" style="font-weight:500;">BlogPost Title</label>
+      <input type="text" class="form-control" id="update-blogpost-title" placeholder="" value="{{blogPost.title}}">
+    </div>
+    <div class="form-group m-3">
+      <label for="update-blogpost-content" class="form-label custom-label" style="font-weight:500;">BlogPost Content</label>
+      <textarea class="form-control" id="update-blogpost-content" name="content"
+        style="height: 200px">{{ blogPost.content }}</textarea>
+    </div>
+    <div class="row d-flex justify-content-space-between m-3" style="width: 100%">
+    <button class="btn btn-primary ms-1 me-3" id="update-blogpost" style="width:min-content; padding: .75rem;"
+      type="submit">Update</button>
+    <button class="btn btn-primary mx-3" id="delete-blogpost" style="width:min-content; padding: .75rem;"
+      type="submit">Delete</button>
+  </div>
+  </div>
+</div>
+</div>
 
-<article class="new-page">
-    <section class="edit-form-page">
-        <div class="form-heading">
-            <h2>
-                Edit
-            </h2>
-        </div>
-        <div class="form-section">
-            <form class="edit-post-form">
-                <div class="post-title-section">
-                    <label for="post-title">Title</label>
-                    <input type="text" name="post-title" id="post-title" value="{{post.title}}" />
-                </div>
-                <div class="post-content">
-                    <label for="post-content">Content</label>
-                    <textarea class="entry-field" id="post-content" name="post-content">{{post.content}}</textarea>
-                </div>
-                <button type="submit">Update</button>
-                <button type="button" class="delete-post-btn">Delete</button>
-            </form>
-        </div>
-    </section>
-</article>
 
-{{#if loggedIn}}
+
+
 <script src="/public/js/edit.js"></script>
 <script src="/public/js/delete.js"></script>
-{{/if}}
