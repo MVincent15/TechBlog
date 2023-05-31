@@ -15,7 +15,8 @@ This Tech Blog is able to publish posts, thouhts and opinions about any tech sub
   ## Installation 
   Git clone the repo, run npm i to install the necessary dependencies and npm start to start the server. Otherwise, click on the live link below. 
   ## Usage
-  //add live link, and screenshots 
+  Live Link: https://glacial-basin-36522.herokuapp.com/
+  
 
   ## Credits 
 Used sections from SMU gitlab as well as documentation on all dependencies. Used mdn and stack overflow for help with issues. 
